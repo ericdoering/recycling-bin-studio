@@ -3,26 +3,22 @@ import { TrashIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const deletedDocBinDocument = defineType({
-  // We use a dot in the _id to make sure this is a private document which cannot be read unless you are authenticated. We chose to do the same in the type name as a personal naming choice.
   name: "deletedDocs.bin",
   title: "Bin: Deleted Document Log",
   type: "document",
   icon: TrashIcon,
-  // we want to skip a draft version of this document, so we set this 👇
   liveEdit: true,
-  // Fieldset to "hide away" the deletedDocIds array from view unless we need them
   fieldsets: [
     {
       name: "deletedDocIdLogs",
       title: "All Deleted Doc Id Logs",
       options: {
         collapsible: true,
-        collapsed: true,
+        collapsed: true, 
       },
     },
   ],
   fields: [
-    // * Main log for restoring documents
     defineField({
       name: "deletedDocLogs",
       title: "Deleted Doc Logs",
@@ -72,7 +68,6 @@ export const deletedDocBinDocument = defineType({
         }),
       ],
     }),
-    // Backup of all deleted doc ids -> optional and not used but can be useful to track
     defineField({
       name: "deletedDocIds",
       title: "Deleted Doc Ids",
@@ -91,7 +86,6 @@ export const deletedDocBinDocument = defineType({
         }),
       ],
     }),
-    // title for the document (will be set during creation via CLI)
     defineField({
       name: "title",
       title: "Title",
@@ -100,3 +94,4 @@ export const deletedDocBinDocument = defineType({
     }),
   ],
 });
+
