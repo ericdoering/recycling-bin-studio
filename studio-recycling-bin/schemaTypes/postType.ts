@@ -29,7 +29,12 @@ export const postType = defineType({
     defineField({
       name: 'body',
       type: 'array',
+      readOnly: true,
       of: [{type: 'block'}],
+      components: {
+        input: (props: any) =>
+          props.renderDefault({ ...props, arrayFunctions: () => null }),
+      },
     }),
   ],
 })
