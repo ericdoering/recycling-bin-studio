@@ -1,6 +1,7 @@
 // schemas/singletons/deletedDocBinDocument.ts
 import { TrashIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { DeletedDocIdInputComponent } from "../../components/DeletedDocIdInputComponent";
 
 export const deletedDocBinDocument = defineType({
   name: "deletedDocs.bin",
@@ -14,7 +15,7 @@ export const deletedDocBinDocument = defineType({
       title: "All Deleted Doc Id Logs",
       options: {
         collapsible: true,
-        collapsed: true, 
+        collapsed: true,
       },
     },
   ],
@@ -29,6 +30,10 @@ export const deletedDocBinDocument = defineType({
       },
       description:
         "Log of deleted documents. All items have the revision ID as the _key value and might have already been restored again.",
+      components: {
+        input: (props: any) =>
+          props.renderDefault({ ...props, arrayFunctions: () => null }),
+      },
       of: [
         defineArrayMember({
           type: "object",
@@ -77,11 +82,18 @@ export const deletedDocBinDocument = defineType({
         sortable: false,
       },
       fieldset: "deletedDocIdLogs",
+      components: {
+        input: (props: any) =>
+          props.renderDefault({ ...props, arrayFunctions: () => null }),
+      },
       of: [
         defineArrayMember({
           name: "deletedDocId",
           type: "string",
           readOnly: true,
+          components: {
+            input: DeletedDocIdInputComponent,
+          },
           validation: (Rule) => Rule.required(),
         }),
       ],
@@ -94,4 +106,3 @@ export const deletedDocBinDocument = defineType({
     }),
   ],
 });
-
