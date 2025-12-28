@@ -2,6 +2,7 @@
 import { TrashIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 import { DeletedDocIdInputComponent } from "../../components/DeletedDocIdInputComponent";
+import { DeletionLogItemComponent } from "../../components/DeletionLogItemComponent";
 
 export const deletedDocBinDocument = defineType({
   name: "deletedDocs.bin",
@@ -40,6 +41,10 @@ export const deletedDocBinDocument = defineType({
           name: "log",
           title: "Log",
           readOnly: true,
+          components: {
+            // Type assertion to fix type incompatibility. This is safe as DeletionLogItemComponent works with LogItem, as expected in this schema.
+            item: DeletionLogItemComponent as React.ComponentType<any>,
+          },
           fields: [
             defineField({
               name: "docId",
