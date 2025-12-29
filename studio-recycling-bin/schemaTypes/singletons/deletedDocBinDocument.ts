@@ -21,6 +21,7 @@ export const deletedDocBinDocument = defineType({
     },
   ],
   fields: [
+    // * Main log for restoring documents
     defineField({
       name: "deletedDocLogs",
       title: "Deleted Doc Logs",
@@ -29,12 +30,12 @@ export const deletedDocBinDocument = defineType({
       options: {
         sortable: false,
       },
-      description:
-        "Log of deleted documents. All items have the revision ID as the _key value and might have already been restored again.",
       components: {
         input: (props: any) =>
           props.renderDefault({ ...props, arrayFunctions: () => null }),
       },
+      description:
+        "Log of deleted documents. All items have the revision ID as the _key value and might have already been restored again.",
       of: [
         defineArrayMember({
           type: "object",
@@ -42,8 +43,7 @@ export const deletedDocBinDocument = defineType({
           title: "Log",
           readOnly: true,
           components: {
-            // Type assertion to fix type incompatibility. This is safe as DeletionLogItemComponent works with LogItem, as expected in this schema.
-            item: DeletionLogItemComponent as React.ComponentType<any>,
+            item: DeletionLogItemComponent as any,
           },
           fields: [
             defineField({
@@ -93,14 +93,13 @@ export const deletedDocBinDocument = defineType({
       },
       of: [
         defineArrayMember({
-          name: "deletedDocId",
-          type: "string",
-          readOnly: true,
-          components: {
-            input: DeletedDocIdInputComponent,
-          },
-          validation: (Rule) => Rule.required(),
-        }),
+            name: "deletedDocId",
+            type: "string",
+            readOnly: true,
+            components: {
+              input: DeletedDocIdInputComponent,
+            }
+          }),
       ],
     }),
     defineField({

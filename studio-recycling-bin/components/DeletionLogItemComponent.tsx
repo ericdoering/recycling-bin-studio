@@ -10,19 +10,13 @@ import User from "./User"
 
 const apiVersion = '2025-12-27'
 
-/** ### Array Item Component for each log entry
- *
- * with Intent Button to open the document and restore it
- */
+
 export const DeletionLogItemComponent: ComponentType<ObjectItemProps<LogItem>> = async (props) => {
-  // * Get the value from the props
   const value = props.value
-  // * Set up user client to get the user name of the user who deleted the document
   const client = useClient({ apiVersion }).withConfig({ withCredentials: true })
   const [user, setUser] = useState<SanityUser | undefined>()
 
   useEffect(() => {
-    // * Get the user name of the user who deleted the document
     value.deletedBy &&
       client.users
         .getById(value.deletedBy)
@@ -34,7 +28,6 @@ export const DeletionLogItemComponent: ComponentType<ObjectItemProps<LogItem>> =
         })
   }, [])
 
-  // * Format the date to be nice and universal
   const date = new Date(value.deletedAt)
   const months = [
     'January',
