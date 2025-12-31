@@ -6,7 +6,7 @@ import { DeletionLogItemComponent } from "../../components/DeletionLogItemCompon
 
 export const deletedDocBinDocument = defineType({
   name: "deletedDocs.bin",
-  title: "Bin: Deleted Document Log",
+  title: "Recycling Bin: Deleted Document Logs",
   type: "document",
   icon: TrashIcon,
   liveEdit: true,
@@ -16,12 +16,11 @@ export const deletedDocBinDocument = defineType({
       title: "All Deleted Doc Id Logs",
       options: {
         collapsible: true,
-        collapsed: true,
+        collapsed: false,
       },
     },
   ],
   fields: [
-    // * Main log for restoring documents
     defineField({
       name: "deletedDocLogs",
       title: "Deleted Doc Logs",
@@ -98,7 +97,7 @@ export const deletedDocBinDocument = defineType({
             readOnly: true,
             components: {
               input: DeletedDocIdInputComponent,
-            }
+            },
           }),
       ],
     }),
@@ -110,3 +109,4 @@ export const deletedDocBinDocument = defineType({
     }),
   ],
 });
+
