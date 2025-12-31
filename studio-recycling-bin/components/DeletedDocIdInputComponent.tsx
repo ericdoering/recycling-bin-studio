@@ -3,7 +3,6 @@ import { Card, Flex, Text } from '@sanity/ui'
 import { ComponentType } from 'react'
 import { StringInputProps } from 'sanity'
 
-
 export const DeletedDocIdInputComponent: ComponentType<StringInputProps> = (
   props,
 ) => {
