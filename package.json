@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "sanity-plugin-internationalized-array": "^3.2.2"
+  }
+}
